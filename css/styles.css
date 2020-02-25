@@ -1,6 +1,13 @@
+:root {
+  --primary-dark: #212121;
+  --secondary-dark: #6e6e6e;
+  --primary-btn: #e9e6e6;
+}
+
 .navbar {
-  background-color: #212121;
+  background-color: var(--primary-dark);
   font-size: 18px;
+  border-bottom: 10px solid var(--secondary-dark);
 }
 .sidenav-trigger {
   cursor: pointer;
@@ -8,16 +15,21 @@
 }
 
 .side-menu {
-  background-color: #212121;
+  background-color: var(--primary-dark);
 }
 
 .side-menu a {
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .header {
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+.header span {
+  font-weight: bold;
 }
 
 .subheader {
@@ -30,7 +42,7 @@
 
 .add-btn {
   position: relative;
-  background-color: #333333;
+  background-color: var(--secondary-dark);
 }
 
 .add-btn:hover {
@@ -42,4 +54,95 @@
   top: 1px;
   left: 0;
   font-weight: bold;
+}
+
+.projects {
+  margin-top: 2rem;
+}
+
+.projects h4 {
+  text-align: center;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.card-panel.project {
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 1px 3px rgba(90, 90, 90, 0.5);
+  display: grid;
+  grid-template-columns: 2fr 6fr 1fr 1fr;
+  grid-template-areas: 'image details edit delete';
+  position: relative;
+}
+
+.project img {
+  grid-area: image;
+  max-width: 80px;
+  align-self: center;
+}
+
+.project-details {
+  grid-area: details;
+  margin-top: 6px;
+}
+
+.project-edit {
+  grid-area: edit;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.project-delete {
+  grid-area: delete;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.project-details label {
+  margin-right: 10px;
+  font-size: 1rem;
+}
+.project-details p {
+  display: inline;
+}
+
+.project-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.project-person {
+  margin: 5px 0 10px;
+}
+
+.project-date {
+  margin: 5px 0;
+}
+
+.status {
+  font-weight: bold;
+}
+
+/* Form Styles */
+.side-form-add button,
+.side-form-edit button {
+  background-color: var(--secondary-dark) !important;
+}
+
+.side-form-add {
+  width: 60%;
+}
+
+input {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+form .input-field {
+  margin-top: 30px;
 }

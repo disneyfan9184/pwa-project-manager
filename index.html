@@ -15,6 +15,11 @@
     />
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- iOS Support -->
+    <link rel="apple-touch-icon" href="/icons/icon-96x96.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
 
     <title>Project Manager</title>
   </head>
@@ -63,17 +68,28 @@
 
     <!-- Projects -->
     <div class="projects container grey-text text-darken-1">
+      <h4>Projects</h4>
       <!-- One Project -->
       <div class="card-panel project white row">
         <img src="/img/project.png" alt="project thumbnail" />
         <div class="project-details">
-          <div class="project-title">Install SQL Server database</div>
-          <div class="project-person">Mario</div>
+          <div class="project-title">
+            Install SQL Server database
+          </div>
+          <div class="project-person">
+            <p class="assigned">Mario</p>
+          </div>
           <div class="project-description">
             Install new SQL database for enhance systems performance
           </div>
-          <div class="project-date">3/5/2020</div>
-          <div class="project-status">ongoing</div>
+          <div class="project-date">
+            <label class="grey-text text-darken-1">Due:</label>
+            <p class="date">3/5/2020</p>
+          </div>
+          <div class="project-status">
+            <label class="grey-text text-darken-1">Status:</label>
+            <p class="status">ongoing</p>
+          </div>
         </div>
         <div class="project-edit">
           <div class="material-icons">edit</div>
@@ -92,8 +108,14 @@
           <div class="project-description">
             Create new front end in Vue.js for e-commerce application
           </div>
-          <div class="project-date">3/15/2020</div>
-          <div class="project-status">ongoing</div>
+          <div class="project-date">
+            <label class="grey-text text-darken-1">Due:</label>
+            3/15/2020
+          </div>
+          <div class="project-status">
+            <label class="grey-text text-darken-1">Status:</label>
+            <p class="status">ongoing</p>
+          </div>
         </div>
         <div class="project-edit">
           <div class="material-icons">edit</div>
@@ -113,8 +135,14 @@
             Provide better search engine optimizations for higher search
             visibility
           </div>
-          <div class="project-date">3/12/2020</div>
-          <div class="project-status">ongoing</div>
+          <div class="project-date">
+            <label class="grey-text text-darken-1">Due:</label>
+            3/12/2020
+          </div>
+          <div class="project-status">
+            <label class="grey-text text-darken-1">Status:</label>
+            <p class="status">ongoing</p>
+          </div>
         </div>
         <div class="project-edit">
           <div class="material-icons">edit</div>
@@ -129,12 +157,12 @@
       <a
         href=""
         class="btn-floating btn-small add-btn sidenav-trigger"
-        data-target="side-add-form"
+        data-target="side-form-add"
         ><i class="material-icons">add</i></a
       >
     </div>
 
-    <!-- Side Form Add Recipe-->
+    <!-- Side Form Add Project-->
     <div id="side-form-add" class="sidenav side-form-add">
       <form class="add-project container section">
         <h6>New Project</h6>
@@ -160,9 +188,43 @@
           <label for="status">Status</label>
         </div>
         <div class="input-field center">
-          <button class="btn-small add-btn">Add</button>
+          <button class="btn-small">Add</button>
         </div>
       </form>
+    </div>
+
+    <!-- Side Form Edit Project-->
+    <div id="side-form-edit" class="sidenav side-form-edit">
+      <!-- <form class="edit-project container section">
+        <h6>Edit Project</h6>
+        <div class="divider"></div>
+        <div class="input-field">
+          <input type="text" id="titleEdit" class="validate" />
+          <label for="titleEdit">Project Name</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="nameEdit" class="validate" />
+          <label for="nameEdit">Assigned To</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="descriptionEdit" class="validate" />
+          <label for="descriptionEdit">Description</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="date" class="validate" />
+          <label for="date">Due Date</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="status" class="validate" />
+          <label for="status">Status</label>
+        </div>
+        <div class="input-field">
+          <input type="hidden" id="id" />
+        </div>
+        <div class="input-field center">
+          <button class="btn-small">Save</button>
+        </div>
+      </form> -->
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
