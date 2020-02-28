@@ -4,6 +4,10 @@
   --primary-btn: #e9e6e6;
 }
 
+.container {
+  max-width: 90% !important;
+}
+
 .navbar {
   background-color: var(--primary-dark);
   font-size: 18px;
@@ -66,40 +70,30 @@
   text-transform: uppercase;
 }
 
-.card-panel.project {
+.project-details li {
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0px 1px 3px rgba(90, 90, 90, 0.5);
-  display: grid;
-  grid-template-columns: 2fr 6fr 1fr 1fr;
-  grid-template-areas: 'image details edit delete';
   position: relative;
+  /* border-right: 3px solid orange; */
 }
 
-.project img {
-  grid-area: image;
-  max-width: 80px;
-  align-self: center;
-}
-
-.project-details {
-  grid-area: details;
-  margin-top: 6px;
+.project-title img {
+  max-width: 50px;
+  margin-right: 20px;
 }
 
 .project-edit {
-  grid-area: edit;
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 10px;
+  right: 70px;
   cursor: pointer;
 }
 
 .project-delete {
-  grid-area: delete;
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 10px;
+  right: 20px;
   cursor: pointer;
 }
 
@@ -109,6 +103,11 @@
 }
 .project-details p {
   display: inline;
+}
+
+.project-details li {
+  padding: 0;
+  margin: 2px;
 }
 
 .project-title {

@@ -24,7 +24,7 @@
 
     <title>Project Manager</title>
   </head>
-  <body class="grey lighten-4">
+  <body class="grey lighten-3">
     <!-- Top Navigation -->
     <nav class="z-depth-0 navbar">
       <div class="nav-wrapper container">
@@ -70,90 +70,90 @@
     <!-- Projects -->
     <div class="projects container grey-text text-darken-1">
       <h4>Projects</h4>
-      <!-- One Project -->
-      <div class="card-panel project white row">
-        <img src="/img/project.png" alt="project thumbnail" />
-        <div class="project-details">
-          <div class="project-title">
-            Install SQL Server database
+      <ul
+        class="collapsible z-depth-0 guides project-details"
+        style="border: none;"
+      >
+        <li>
+          <div class="project-title collapsible-header">
+            <img src="/img/project.png" alt="project thumbnail" />
+            Create MongoDB Backend
           </div>
-          <div class="project-person">
-            <p class="assigned">Mario</p>
+          <div class="collapsible-body white">
+            <div class="project-person">Luigi</div>
+            <div class="project-description">
+              Create new no-SQL backend database
+            </div>
+            <div class="project-date">
+              <label class="grey-text text-darken-1">Due:</label>
+              3/18/2020
+            </div>
+            <div class="project-status">
+              <label class="grey-text text-darken-1">Status:</label>
+              <p class="status">ongoing</p>
+            </div>
+            <div class="project-edit">
+              <div class="material-icons">edit</div>
+            </div>
+            <div class="project-delete">
+              <div class="material-icons">delete</div>
+            </div>
           </div>
-          <div class="project-description">
-            Install new SQL database for enhance systems performance
+        </li>
+        <li>
+          <div class="project-title collapsible-header">
+            <img src="/img/project.png" alt="project thumbnail" />
+            SEO
           </div>
-          <div class="project-date">
-            <label class="grey-text text-darken-1">Due:</label>
-            <p class="date">3/5/2020</p>
+          <div class="collapsible-body white">
+            <div class="project-person">Luigi</div>
+            <div class="project-description">
+              Create search optimization techniques for more visibility
+            </div>
+            <div class="project-date">
+              <label class="grey-text text-darken-1">Due:</label>
+              3/25/2020
+            </div>
+            <div class="project-status">
+              <label class="grey-text text-darken-1">Status:</label>
+              <p class="status">ongoing</p>
+            </div>
+            <div class="project-edit">
+              <div class="material-icons">edit</div>
+            </div>
+            <div class="project-delete">
+              <div class="material-icons">delete</div>
+            </div>
           </div>
-          <div class="project-status">
-            <label class="grey-text text-darken-1">Status:</label>
-            <p class="status">ongoing</p>
+        </li>
+        <li>
+          <div class="project-title collapsible-header">
+            <img src="/img/project.png" alt="project thumbnail" />
+            Create Front End App
           </div>
-        </div>
-        <div class="project-edit">
-          <div class="material-icons">edit</div>
-        </div>
-        <div class="project-delete">
-          <div class="material-icons">delete</div>
-        </div>
-      </div>
-
-      <!-- One Project -->
-      <div class="card-panel project white row">
-        <img src="/img/project.png" alt="project thumbnail" />
-        <div class="project-details">
-          <div class="project-title">Create Front End App</div>
-          <div class="project-person">Luigi</div>
-          <div class="project-description">
-            Create new front end in Vue.js for e-commerce application
+          <div class="collapsible-body white">
+            <div class="project-person">Luigi</div>
+            <div class="project-description">
+              Create new front end in Vue.js for e-commerce application
+            </div>
+            <div class="project-date">
+              <label class="grey-text text-darken-1">Due:</label>
+              3/15/2020
+            </div>
+            <div class="project-status">
+              <label class="grey-text text-darken-1">Status:</label>
+              <p class="status">ongoing</p>
+            </div>
+            <div class="project-edit">
+              <div class="material-icons">edit</div>
+            </div>
+            <div class="project-delete">
+              <div class="material-icons">delete</div>
+            </div>
           </div>
-          <div class="project-date">
-            <label class="grey-text text-darken-1">Due:</label>
-            3/15/2020
-          </div>
-          <div class="project-status">
-            <label class="grey-text text-darken-1">Status:</label>
-            <p class="status">ongoing</p>
-          </div>
-        </div>
-        <div class="project-edit">
-          <div class="material-icons">edit</div>
-        </div>
-        <div class="project-delete">
-          <div class="material-icons">delete</div>
-        </div>
-      </div>
-
-      <!-- One Project -->
-      <div class="card-panel project white row">
-        <img src="/img/project.png" alt="project thumbnail" />
-        <div class="project-details">
-          <div class="project-title">SEO</div>
-          <div class="project-person">Crystal</div>
-          <div class="project-description">
-            Provide better search engine optimizations for higher search
-            visibility
-          </div>
-          <div class="project-date">
-            <label class="grey-text text-darken-1">Due:</label>
-            3/12/2020
-          </div>
-          <div class="project-status">
-            <label class="grey-text text-darken-1">Status:</label>
-            <p class="status">ongoing</p>
-          </div>
-        </div>
-        <div class="project-edit">
-          <div class="material-icons">edit</div>
-        </div>
-        <div class="project-delete">
-          <div class="material-icons">delete</div>
-        </div>
-      </div>
-    </div>
-
+        </li>
+      </ul>
+    
     <div class="center">
       <a
         href=""
@@ -230,7 +230,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="/js/app.js"></script>
-    <script src="/js/db.js"></script>
+    <!-- <script src="/js/db.js"></!-->
     <script src="/js/ui.js"></script>
   </body>
 </html>

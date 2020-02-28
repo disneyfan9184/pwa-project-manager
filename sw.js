@@ -1,6 +1,6 @@
 // Shell resource
-const staticCacheName = 'site-static';
-const dynamicCacheName = 'site-dynamic';
+const staticCacheName = 'site-static-v11';
+const dynamicCacheName = 'site-dynamic-v1';
 const assets = [
   '/',
   '/index.html',
@@ -16,7 +16,7 @@ const assets = [
 
 // Install service worker
 self.addEventListener('install', event => {
-  // console.log('Service worker has been installed', event);
+  console.log('Service worker has been installed', event);
   event.waitUntil(
     caches.open(staticCacheName).then(cache => {
       console.log('caching shell assets');
@@ -28,9 +28,34 @@ self.addEventListener('install', event => {
 // Activate service worker
 self.addEventListener('activate', event => {
   // console.log('Service worker has been activated', event);
+  event.waitUntil(
+    caches.keys().then(keys => {
+      // console.log(keys); // keys are the cache names
+      return Promise.all(
+        keys
+          .filter(key => key !== staticCacheName)
+          .map(key => caches.delete(key))
+      );
+    })
+  );
 });
 
 // Fetch event
 self.addEventListener('fetch', event => {
+  // Intercept fetch events when browser tries to go out to the server and
+  // tries to retrieve resources.
   // console.log('fetch event', event);
+  event.respondWith(
+    caches.match(event.request).then(cacheRes => {
+      return (
+        cacheRes ||
+        fetch(event.request).then(fetchRes => {
+          return caches.open(dynamicCacheName).then(cache => {
+            cache.put(event.request.url, fetchRes.clone());
+            return fetchRes;
+          });
+        })
+      );
+    })
+  );
 });
