@@ -13,6 +13,15 @@
   font-size: 18px;
   border-bottom: 10px solid var(--secondary-dark);
 }
+
+.logged-in {
+  /* display: none; */
+}
+
+.logged-out {
+  /* display: none; */
+}
+
 .sidenav-trigger {
   cursor: pointer;
   font-size: 28px !important;

@@ -45,12 +45,13 @@ addForm.addEventListener('submit', e => {
     .add(project)
     .catch(err => console.log(err));
 
+  addForm.reset();
   // Clear form fields
-  addForm.title.value = '';
-  addForm.name.value = '';
-  addForm.scope.value = '';
-  addForm.due.value = '';
-  addForm.status.value = '';
+  // addForm.title.value = '';
+  // addForm.name.value = '';
+  // addForm.scope.value = '';
+  // addForm.due.value = '';
+  // addForm.status.value = '';
 });
 
 // Delete/Edit a recipe
@@ -96,11 +97,12 @@ projectContainer.addEventListener('click', e => {
             .update(projectData)
             .catch(err => console.log(err));
 
-          title.value = '';
-          name.value = '';
-          scope.value = '';
-          date.value = '';
-          status.value = '';
+          editForm.reset();
+          // title.value = '';
+          // name.value = '';
+          // scope.value = '';
+          // date.value = '';
+          // status.value = '';
         });
       }
     });
