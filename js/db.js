@@ -16,7 +16,7 @@ db.collection('projects').onSnapshot(snapshot => {
   // Get array of document changes
   snapshot.docChanges().forEach(change => {
     // console.log(change, change.doc.data(), change.doc.id);
-    if (change.type === 'added' || change.type === 'modified') {
+    if (change.type === 'added') {
       // Add the document to the web page
       renderProject(change.doc.data(), change.doc.id);
     }
@@ -58,10 +58,51 @@ const projectContainer = document.querySelector('.project-details');
 projectContainer.addEventListener('click', e => {
   if (e.target.innerHTML === 'delete') {
     const id = e.target.getAttribute('data-id');
-    db.collection('projects')
-      .doc(id)
-      .delete();
+    if (confirm('Are you sure you want to delete project?')) {
+      db.collection('projects')
+        .doc(id)
+        .delete();
+    } else {
+      return;
+    }
   } else if (e.target.innerHTML === 'edit') {
     const id = e.target.getAttribute('data-id');
+    const editForm = document.querySelector('.edit-project');
+    const title = editForm.querySelector('#editTitle');
+    const name = editForm.querySelector('#editName');
+    const scope = editForm.querySelector('#editScope');
+    const date = editForm.querySelector('#editDue');
+    const status = editForm.querySelector('#editStatus');
+    const project = document.querySelectorAll('.project-item');
+    project.forEach(p => {
+      const dataId = p.getAttribute('data-id');
+      if (dataId === id) {
+        title.value = p.querySelector('.project-title').innerText;
+        name.value = p.querySelector('.project-person').innerText;
+        scope.value = p.querySelector('.project-description').innerText;
+        date.value = p.querySelector('.due').innerText;
+        status.value = p.querySelector('.status').innerText;
+
+        editForm.addEventListener('submit', e => {
+          const projectData = {
+            title: title.value,
+            name: name.value,
+            scope: scope.value,
+            due: date.value,
+            status: status.value
+          };
+          db.collection('projects')
+            .doc(id)
+            .update(projectData)
+            .catch(err => console.log(err));
+
+          title.value = '';
+          name.value = '';
+          scope.value = '';
+          date.value = '';
+          status.value = '';
+        });
+      }
+    });
   }
 });

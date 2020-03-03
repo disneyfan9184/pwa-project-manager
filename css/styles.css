@@ -138,6 +138,10 @@
   width: 60%;
 }
 
+.edit-project .input-field {
+  margin-top: 0;
+}
+
 input {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;

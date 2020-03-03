@@ -18,17 +18,14 @@ const renderProject = (data, id) => {
   const html = `
     <li class="project-item" data-id="${id}">
       <div class="project-title collapsible-header">
-        <img src="/img/project.png" alt="project thumbnail" />
-        ${data.title}
+        <img src="/img/project.png" alt="project thumbnail" />${data.title}
       </div>
       <div class="collapsible-body white">
         <div class="project-person"> ${data.name}</div>
-        <div class="project-description">
-        ${data.scope}
-        </div>
+        <div class="project-description">${data.scope}</div>
         <div class="project-date">
           <label class="grey-text text-darken-1">Due:</label>
-          ${data.due}
+          <p class="due">${data.due}</p>
         </div>
         <div class="project-status">
           <label class="grey-text text-darken-1">Status:</label>
