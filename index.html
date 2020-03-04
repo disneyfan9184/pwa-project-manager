@@ -31,7 +31,7 @@
         <a href="/" class="grey-text text-lighten-2 header"
           >Project<span>Manager</span></a
         >
-        <ul id="nav-mobile" class=" right hide-on-small-and-down">
+        <ul class="nav-mobile right">
           <li class="logged-in">
             <a
               href=""
@@ -39,6 +39,9 @@
               data-target="modal-account"
               >Account</a
             >
+          </li>
+          <li class="logged-in">
+            <a href="#" class="grey-text text-lighten-2" id="logout">Logout</a>
           </li>
           
           </li>
@@ -58,10 +61,10 @@
               >Sign up</a
             >
           </li>
-          <li>
+          <!-- <li>
             <a
               href="/pages/about.html"
-              class="waves-effect grey-text text-lighten-2"
+              class="grey-text text-lighten-2"
             >
               About</a
             >
@@ -69,13 +72,13 @@
           <li>
             <a
               href="/pages/contact.html"
-              class="waves-effect grey-text text-lighten-2"
+              class="grey-text text-lighten-2"
             >
              Contact</a
             >
-          </li>
+          </li> -->
         </ul>
-        <span class="right grey-text text-lighten-2 hide-on-med-and-up">
+        <span class="right grey-text text-lighten-2 hamburger">
           <i class="material-icons sidenav-trigger" data-target="side-menu"
             >menu</i
           >
@@ -87,7 +90,7 @@
     <ul id="side-menu" class="sidenav side-menu">
       <li><a class="subheader grey-text text-lighten-2">PROJECTMANAGER</a></li>
       <li>
-        <a href="/" class="waves-effect grey-text text-lighten-2"
+        <a href="/" class="grey-text text-lighten-2"
           ><i class="material-icons grey-text text-lighten-2">dashboard</i>
           Dashboard</a
         >
@@ -102,12 +105,22 @@
         >
       </li>
 
+      <li class="logged-in">
+        <a
+          href=""
+          class="grey-text text-lighten-2"
+          ><i 
+          class="material-icons grey-text text-lighten-2" 
+          id="logout">lock</i>Logout</a
+        >
+      </li>
+
       <li class="logged-out">
         <a
           href=""
           class="grey-text text-lighten-2 modal-trigger"
           data-target="modal-login"
-          ><i class="material-icons grey-text text-lighten-2">lock</i>Login</a
+          ><i class="material-icons grey-text text-lighten-2">lock_open</i>Login</a
         >
       </li>
       <li class="logged-out">
@@ -119,10 +132,10 @@
           up</a
         >
       </li>
-      <li>
+      <!-- <li>
         <a
           href="/pages/about.html"
-          class="waves-effect grey-text text-lighten-2"
+          class="grey-text text-lighten-2"
         >
           <i class="material-icons grey-text text-lighten-2">info</i>About</a
         >
@@ -131,11 +144,11 @@
       <li>
         <a
           href="/pages/contact.html"
-          class="waves-effect grey-text text-lighten-2"
+          class="grey-text text-lighten-2"
         >
           <i class="material-icons grey-text text-lighten-2">mail</i>Contact</a
         >
-      </li>
+      </li> -->
     </ul>
 
     <!-- Projects -->
@@ -170,7 +183,7 @@
           <label for="name">Assign to</label>
         </div>
         <div class="input-field">
-          <input type="text" id="scope" class="validate" />
+          <textarea id="scope" class="materialize-textarea" rows="5"></textarea>
           <label for="scope">Description</label>
         </div>
         <div class="input-field">
@@ -202,7 +215,7 @@
         </div>
         <label for="editScope">Description</label>
         <div class="input-field">
-          <input type="text" id="editScope" class="validate" />
+          <textarea id="editScope" class="materialize-textarea"></textarea>
         </div>
         <label for="editDue">Due Date</label>
         <div class="input-field">
@@ -221,8 +234,60 @@
       </form>
     </div>
 
+     <!-- SIGN UP MODAL -->
+     <div id="modal-signup" class="modal">
+      <div class="modal-content">
+        <h4>Sign up</h4>
+        <br />
+        <form id="signup-form">
+          <div class="input-field">
+            <input type="email" id="signup-email" required />
+            <label for="signup-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="signup-password" required />
+            <label for="signup-password">Choose password</label>
+          </div>
+          <div class="input-field">
+            <input type="text" id="signup-bio" required />
+            <label for="signup-bio">One line bio</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+      <div class="modal-content">
+        <h4>Login</h4>
+        <br />
+        <form id="login-form">
+          <div class="input-field">
+            <input type="email" id="login-email" required />
+            <label for="login-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="login-password" required />
+            <label for="login-password">Your password</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Login</button>
+        </form>
+      </div>
+    </div>
+
+     <!-- ACCOUNT MODAL -->
+     <div id="modal-account" class="modal">
+      <div class="modal-content center-align">
+        <h4>Account details</h4>
+        <br />
+        <div class="account-details"></div>
+      </div>
+    </div>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
 
     <script>
@@ -238,11 +303,15 @@
       };
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
+
+      // Make auth and firestore references
+      const auth = firebase.auth();
       const db = firebase.firestore();
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/auth.js"></script>
     <script src="/js/db.js"></script>
     <script src="/js/ui.js"></script>
   </body>

@@ -14,6 +14,10 @@
   border-bottom: 10px solid var(--secondary-dark);
 }
 
+.nav-mobile {
+  display: none;
+}
+
 .logged-in {
   /* display: none; */
 }
@@ -70,7 +74,7 @@
 }
 
 .projects {
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 .projects h4 {
@@ -158,4 +162,15 @@ input {
 
 form .input-field {
   margin-top: 30px;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 768px) {
+  .nav-mobile {
+    display: block;
+  }
+
+  .hamburger {
+    display: none;
+  }
 }
