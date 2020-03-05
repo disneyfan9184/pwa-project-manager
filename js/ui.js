@@ -1,4 +1,5 @@
 const projects = document.querySelector('.project-details');
+const projectDetails = document.querySelector('.projects');
 
 // Setup Materialize Components
 const sideNav = document.querySelector('.side-menu');
@@ -18,7 +19,8 @@ M.Modal.init(modals);
 
 // Render project data
 const renderProject = (data, id) => {
-  const html = `
+  if (data) {
+    const html = `
     <li class="project-item" data-id="${id}">
       <div class="project-title collapsible-header">
         <img src="/img/project.png" alt="project thumbnail" />${data.title}
@@ -44,8 +46,10 @@ const renderProject = (data, id) => {
     </li>        
        
   `;
-
-  projects.innerHTML += html;
+    projects.innerHTML += html;
+  } else {
+    projects.innerHTML = '';
+  }
 };
 
 // Remove project from DOM

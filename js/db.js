@@ -9,25 +9,6 @@ db.enablePersistence().catch(err => {
   }
 });
 
-// Set up firestore realtime listener
-db.collection('projects').onSnapshot(snapshot => {
-  // console.log(snapshot.docChanges());
-
-  // Get array of document changes
-  snapshot.docChanges().forEach(change => {
-    // console.log(change, change.doc.data(), change.doc.id);
-    if (change.type === 'added') {
-      // Add the document to the web page
-      renderProject(change.doc.data(), change.doc.id);
-    }
-
-    if (change.type === 'removed') {
-      // Remove document from the web page
-      removeProject(change.doc.id);
-    }
-  });
-});
-
 // Add new project
 const addForm = document.querySelector('.add-project');
 addForm.addEventListener('submit', e => {
