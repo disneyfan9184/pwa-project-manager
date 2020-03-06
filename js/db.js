@@ -26,8 +26,9 @@ addForm.addEventListener('submit', e => {
     .add(project)
     .catch(err => console.log(err));
 
-  addForm.reset();
   // Clear form fields
+  addForm.reset();
+
   // addForm.title.value = '';
   // addForm.name.value = '';
   // addForm.scope.value = '';

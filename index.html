@@ -32,7 +32,7 @@
           >Project<span>Manager</span></a
         >
         <ul class="nav-mobile right">
-          <li class="logged-in">
+          <li class="logged-in" style="display: none;">
             <a
               href=""
               class="grey-text text-lighten-2 modal-trigger"
@@ -40,12 +40,12 @@
               >Account</a
             >
           </li>
-          <li class="logged-in">
+          <li class="logged-in" style="display: none;">
             <a href="#" class="grey-text text-lighten-2" id="logout">Logout</a>
           </li>
           
           </li>
-          <li class="logged-out">
+          <li class="logged-out" style="display: none;">
             <a
               href=""
               class="grey-text text-lighten-2 modal-trigger"
@@ -53,7 +53,7 @@
               >Login</a
             >
           </li>
-          <li class="logged-out">
+          <li class="logged-out" style="display: none;">
             <a
               href=""
               class="grey-text text-lighten-2 modal-trigger"
@@ -152,14 +152,15 @@
     </ul>
 
     <!-- Projects -->
-    <div class="projects container grey-text text-darken-1">      
+    <div class="projects container grey-text text-darken-1"> 
+      <h4>Projects</h4>     
       <ul
         class="collapsible z-depth-0 guides project-details"
         style="border: none;"
       ></ul>
     </div>
 
-    <div class="center">
+    <div class="center logged-in">
       <a
         href=""
         class="btn-floating btn-small add-btn sidenav-trigger"

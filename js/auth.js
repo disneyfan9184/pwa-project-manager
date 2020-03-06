@@ -5,12 +5,13 @@ auth.onAuthStateChanged(user => {
   if (user) {
     // Get data
     // Real-time listener for sending snapshots of database changes
+    removeLoginMessage();
     db.collection('projects').onSnapshot(
       snapshot => {
         snapshot.docChanges().forEach(change => {
           if (change.type === 'added') {
             // Add the document to the web page
-            renderProject(change.doc.data(), change.doc.id, user);
+            renderProject(change.doc.data(), change.doc.id);
           }
 
           if (change.type === 'removed') {
@@ -19,14 +20,14 @@ auth.onAuthStateChanged(user => {
           }
         });
 
-        // setupUI(user);
+        setupUI(user);
       },
       error => {
         console.log(error.message);
       }
     );
   } else {
-    // setupUI();
+    setupUI();
     renderProject(null, null);
   }
 });

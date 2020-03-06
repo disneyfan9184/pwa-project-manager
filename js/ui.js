@@ -1,5 +1,8 @@
 const projects = document.querySelector('.project-details');
 const projectDetails = document.querySelector('.projects');
+const loggedOutLinks = document.querySelectorAll('.logged-out');
+const loggedInLinks = document.querySelectorAll('.logged-in');
+const accountDetails = document.querySelector('.account-details');
 
 // Setup Materialize Components
 const sideNav = document.querySelector('.side-menu');
@@ -17,6 +20,35 @@ M.Collapsible.init(items);
 const modals = document.querySelectorAll('.modal');
 M.Modal.init(modals);
 
+const removeLoginMessage = () => {
+  projects.innerHTML = '';
+};
+
+const setupUI = user => {
+  if (user) {
+    // Account info
+    db.collection('users')
+      .doc(user.uid)
+      .get()
+      .then(doc => {
+        const html = `
+          <h6>Logged in as ${user.email}</h6>
+          <div>${doc.data().bio}</div>
+        `;
+        accountDetails.innerHTML = html;
+      });
+
+    // Toggle UI Elements
+    loggedInLinks.forEach(link => (link.style.display = 'block'));
+    loggedOutLinks.forEach(link => (link.style.display = 'none'));
+  } else {
+    // Hide accounts info
+    accountDetails.innerHTML = '';
+    // Toggle UI elements
+    loggedInLinks.forEach(link => (link.style.display = 'none'));
+    loggedOutLinks.forEach(link => (link.style.display = 'block'));
+  }
+};
 // Render project data
 const renderProject = (data, id) => {
   if (data) {
@@ -48,7 +80,8 @@ const renderProject = (data, id) => {
   `;
     projects.innerHTML += html;
   } else {
-    projects.innerHTML = '';
+    projects.innerHTML =
+      '<h6 class="center">Login to view project list...</h6>';
   }
 };
 
