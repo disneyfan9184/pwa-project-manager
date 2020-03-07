@@ -27,30 +27,30 @@ const limitCacheSize = (name, size) => {
 };
 
 // Install service worker
-self.addEventListener('install', event => {
-  console.log('Service worker has been installed', event);
-  event.waitUntil(
-    caches.open(staticCacheName).then(cache => {
-      console.log('caching shell assets');
-      cache.addAll(assets);
-    })
-  );
-});
+// self.addEventListener('install', event => {
+//   console.log('Service worker has been installed', event);
+//   event.waitUntil(
+//     caches.open(staticCacheName).then(cache => {
+//       console.log('caching shell assets');
+//       cache.addAll(assets);
+//     })
+//   );
+// });
 
 // Activate service worker
-self.addEventListener('activate', event => {
-  console.log('Service worker has been activated', event);
-  event.waitUntil(
-    caches.keys().then(keys => {
-      // console.log(keys); // keys are the cache names
-      return Promise.all(
-        keys
-          .filter(key => key !== staticCacheName && key !== dynamicCacheName)
-          .map(key => caches.delete(key))
-      );
-    })
-  );
-});
+// self.addEventListener('activate', event => {
+//   console.log('Service worker has been activated', event);
+//   event.waitUntil(
+//     caches.keys().then(keys => {
+//       // console.log(keys); // keys are the cache names
+//       return Promise.all(
+//         keys
+//           .filter(key => key !== staticCacheName && key !== dynamicCacheName)
+//           .map(key => caches.delete(key))
+//       );
+//     })
+//   );
+// });
 
 // Fetch event
 // self.addEventListener('fetch', event => {

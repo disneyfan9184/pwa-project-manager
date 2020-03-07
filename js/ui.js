@@ -3,6 +3,7 @@ const projectDetails = document.querySelector('.projects');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
+const adminItems = document.querySelectorAll('.admin');
 
 // Setup Materialize Components
 const sideNav = document.querySelector('.side-menu');
@@ -26,6 +27,10 @@ const removeLoginMessage = () => {
 
 const setupUI = user => {
   if (user) {
+    if (user.admin) {
+      adminItems.forEach(item => (item.style.display = 'block'));
+    }
+
     // Account info
     db.collection('users')
       .doc(user.uid)
@@ -34,6 +39,7 @@ const setupUI = user => {
         const html = `
           <h6>Logged in as ${user.email}</h6>
           <div>${doc.data().bio}</div>
+          <div class="pink-text">${user.admin ? 'Admin' : ''}
         `;
         accountDetails.innerHTML = html;
       });
@@ -42,6 +48,7 @@ const setupUI = user => {
     loggedInLinks.forEach(link => (link.style.display = 'block'));
     loggedOutLinks.forEach(link => (link.style.display = 'none'));
   } else {
+    adminItems.forEach(item => (item.style.display = 'none'));
     // Hide accounts info
     accountDetails.innerHTML = '';
     // Toggle UI elements
@@ -68,10 +75,10 @@ const renderProject = (data, id) => {
           <label class="grey-text text-darken-1">Status:</label>
           <p class="status"> ${data.status}</p>
         </div>
-        <div class="project-edit sidenav-trigger" data-target="side-form-edit">
+        <div class="project-edit sidenav-trigger admin" data-target="side-form-edit">
           <div class="material-icons" data-id="${id}">edit</div>
         </div>
-        <div class="project-delete">
+        <div class="project-delete admin">
           <div class="material-icons" data-id="${id}">delete</div>
         </div>
       </div>

@@ -1,3 +1,14 @@
+// Add admin cloud function
+const adminForm = document.querySelector('.admin-actions');
+adminForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const adminEmail = document.getElementById('admin-email').value;
+  const addAdminRole = functions.httpsCallable('addAdminRole');
+  addAdminRole({ email: adminEmail }).then(result => {
+    console.log(result);
+  });
+});
+
 // Listen for auth status changes - this function fires evertime there is a change
 // in the auth status of a user (ie login, logout, etc)
 auth.onAuthStateChanged(user => {
@@ -5,27 +16,31 @@ auth.onAuthStateChanged(user => {
   if (user) {
     // Get data
     // Real-time listener for sending snapshots of database changes
-    removeLoginMessage();
-    db.collection('projects').onSnapshot(
-      snapshot => {
-        snapshot.docChanges().forEach(change => {
-          if (change.type === 'added') {
-            // Add the document to the web page
-            renderProject(change.doc.data(), change.doc.id);
-          }
+    user.getIdTokenResult().then(idTokenResult => {
+      // Add a property to the user that is logged in which will be 'true 'or 'null'
 
-          if (change.type === 'removed') {
-            // Remove document from the web page
-            removeProject(change.doc.id);
-          }
-        });
+      user.admin = idTokenResult.claims.admin;
+      setupUI(user);
+      removeLoginMessage();
+      db.collection('projects').onSnapshot(
+        snapshot => {
+          snapshot.docChanges().forEach(change => {
+            if (change.type === 'added') {
+              // Add the document to the web page
+              renderProject(change.doc.data(), change.doc.id);
+            }
 
-        setupUI(user);
-      },
-      error => {
-        console.log(error.message);
-      }
-    );
+            if (change.type === 'removed') {
+              // Remove document from the web page
+              removeProject(change.doc.id);
+            }
+          });
+        },
+        error => {
+          console.log(error.message);
+        }
+      );
+    });
   } else {
     setupUI();
     renderProject(null, null);
@@ -60,6 +75,10 @@ signupForm.addEventListener('submit', e => {
       const modal = document.getElementById('modal-signup');
       M.Modal.getInstance(modal).close();
       signupForm.reset();
+      signupForm.querySelector('.error').innerHTML = '';
+    })
+    .catch(err => {
+      signupForm.querySelector('.error').innerHTML = err.message;
     });
 });
 
@@ -69,6 +88,13 @@ logout.addEventListener('click', e => {
   e.preventDefault();
   auth.signOut();
 });
+
+// const sideLogout = document.querySelector('#side-logout');
+// sideLogout.addEventListener('click', e => {
+//   console.log('side logout clicked');
+//   // e.preventDefault();
+//   auth.signOut();
+// });
 
 // Login user
 const loginForm = document.getElementById('login-form');
@@ -80,10 +106,16 @@ loginForm.addEventListener('submit', e => {
   const email = loginForm['login-email'].value;
   const password = loginForm['login-password'].value;
 
-  auth.signInWithEmailAndPassword(email, password).then(cred => {});
-
-  // Close login modal and reset the form
-  const modal = document.getElementById('modal-login');
-  M.Modal.getInstance(modal).close();
-  loginForm.reset();
+  auth
+    .signInWithEmailAndPassword(email, password)
+    .then(cred => {
+      // Close login modal and reset the form
+      const modal = document.getElementById('modal-login');
+      M.Modal.getInstance(modal).close();
+      loginForm.reset();
+      loginForm.querySelector('.error').innerHTML = '';
+    })
+    .catch(err => {
+      loginForm.querySelector('.error').innerHTML = err.message;
+    });
 });
