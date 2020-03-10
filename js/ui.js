@@ -1,9 +1,7 @@
 const projects = document.querySelector('.project-details');
-const projectDetails = document.querySelector('.projects');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
-const adminItems = document.querySelectorAll('.admin');
 
 // Setup Materialize Components
 const sideNav = document.querySelector('.side-menu');
@@ -25,10 +23,50 @@ const removeLoginMessage = () => {
   projects.innerHTML = '';
 };
 
+// Render project data
+const renderProject = (data, id) => {
+  if (data) {
+    const html = `
+    <li class="project-item" data-id="${id}">
+      <div class="project-title collapsible-header">
+        <img src="/img/project.png" alt="project thumbnail" />${data.title}
+      </div>
+      <div class="collapsible-body white">
+        <div class="project-person"> ${data.name}</div>
+        <div class="project-description">${data.scope}</div>
+        <div class="project-date">
+          <label class="grey-text text-darken-1">Due:</label>
+          <p class="due">${data.due}</p>
+        </div>
+        <div class="project-status">
+          <label class="grey-text text-darken-1">Status:</label>
+          <p class="status"> ${data.status}</p>
+        </div>
+        <div class="project-edit sidenav-trigger icon" data-target="side-form-edit">
+          <div class="material-icons" data-id="${id}">edit</div>
+        </div>
+        <div class="project-delete icon">
+          <div class="material-icons" data-id="${id}">delete</div>
+        </div>
+      </div>
+    </li>        
+       
+  `;
+    projects.innerHTML += html;
+  } else {
+    projects.innerHTML =
+      '<h6 class="center">Login to view project list...</h6>';
+  }
+};
+
 const setupUI = user => {
+  const adminItems = document.querySelectorAll('.admin');
+  const icons = document.querySelectorAll('.icon');
   if (user) {
     if (user.admin) {
       adminItems.forEach(item => (item.style.display = 'block'));
+      console.log(icons);
+      console.log(Array.from(icons));
     }
 
     // Account info
@@ -54,41 +92,6 @@ const setupUI = user => {
     // Toggle UI elements
     loggedInLinks.forEach(link => (link.style.display = 'none'));
     loggedOutLinks.forEach(link => (link.style.display = 'block'));
-  }
-};
-// Render project data
-const renderProject = (data, id) => {
-  if (data) {
-    const html = `
-    <li class="project-item" data-id="${id}">
-      <div class="project-title collapsible-header">
-        <img src="/img/project.png" alt="project thumbnail" />${data.title}
-      </div>
-      <div class="collapsible-body white">
-        <div class="project-person"> ${data.name}</div>
-        <div class="project-description">${data.scope}</div>
-        <div class="project-date">
-          <label class="grey-text text-darken-1">Due:</label>
-          <p class="due">${data.due}</p>
-        </div>
-        <div class="project-status">
-          <label class="grey-text text-darken-1">Status:</label>
-          <p class="status"> ${data.status}</p>
-        </div>
-        <div class="project-edit sidenav-trigger admin" data-target="side-form-edit">
-          <div class="material-icons" data-id="${id}">edit</div>
-        </div>
-        <div class="project-delete admin">
-          <div class="material-icons" data-id="${id}">delete</div>
-        </div>
-      </div>
-    </li>        
-       
-  `;
-    projects.innerHTML += html;
-  } else {
-    projects.innerHTML =
-      '<h6 class="center">Login to view project list...</h6>';
   }
 };
 

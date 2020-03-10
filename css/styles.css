@@ -18,13 +18,18 @@
   display: none;
 }
 
-/* .admin {
+.admin {
   display: none;
-} */
+}
 
 .logged-out {
   /* display: none; */
 }
+
+/* .icon {
+  pointer-events: none;
+  opacity: 0.4;
+} */
 
 .sidenav-trigger {
   cursor: pointer;
