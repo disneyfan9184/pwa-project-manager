@@ -24,7 +24,7 @@ const removeLoginMessage = () => {
 };
 
 // Render project data
-const renderProject = (data, id) => {
+const renderProject = (data, id, user) => {
   if (data) {
     const html = `
     <li class="project-item" data-id="${id}">
@@ -40,12 +40,12 @@ const renderProject = (data, id) => {
         </div>
         <div class="project-status">
           <label class="grey-text text-darken-1">Status:</label>
-          <p class="status"> ${data.status}</p>
+          <p class="status">${data.status}</p>
         </div>
-        <div class="project-edit sidenav-trigger icon" data-target="side-form-edit">
+        <div class="project-edit sidenav-trigger admin" data-target="side-form-edit">
           <div class="material-icons" data-id="${id}">edit</div>
         </div>
-        <div class="project-delete icon">
+        <div class="project-delete admin">
           <div class="material-icons" data-id="${id}">delete</div>
         </div>
       </div>
@@ -57,16 +57,15 @@ const renderProject = (data, id) => {
     projects.innerHTML =
       '<h6 class="center">Login to view project list...</h6>';
   }
+  setupUI(user);
 };
 
 const setupUI = user => {
   const adminItems = document.querySelectorAll('.admin');
-  const icons = document.querySelectorAll('.icon');
+
   if (user) {
     if (user.admin) {
       adminItems.forEach(item => (item.style.display = 'block'));
-      console.log(icons);
-      console.log(Array.from(icons));
     }
 
     // Account info
@@ -93,6 +92,21 @@ const setupUI = user => {
     loggedInLinks.forEach(link => (link.style.display = 'none'));
     loggedOutLinks.forEach(link => (link.style.display = 'block'));
   }
+
+  const projectItems = Array.from(document.querySelectorAll('.project-item'));
+  // console.log(projectItems);
+
+  projectItems.forEach(project => {
+    let status = project.querySelector('.status');
+    // console.log(status.innerText);
+    if (status.innerText === 'overdue') {      
+      project.classList.add('overdue');
+    } else if (status.innerText === 'ongoing') {
+      project.classList.add('ongoing');
+    } else {
+      project.classList.add('complete');
+    }
+  });
 };
 
 // Remove project from DOM
@@ -100,3 +114,24 @@ const removeProject = id => {
   const project = document.querySelector(`.project-item[data-id=${id}]`);
   project.remove();
 };
+
+// Search Recipe List
+const filterInput = document.getElementById('filterTitle');
+
+filterInput.addEventListener('keyup', filterNames);
+
+function filterNames() {
+  let filterValue = document.getElementById('filterTitle').value.toUpperCase();
+  let items = projects.querySelectorAll('.project-item');
+
+  for (let i = 0; i < items.length; i++) {
+    let a = items[i].querySelector('.project-title');
+
+    // If matched
+    if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+      items[i].style.display = '';
+    } else {
+      items[i].style.display = 'none';
+    }
+  }
+}

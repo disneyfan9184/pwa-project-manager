@@ -22,14 +22,32 @@
   display: none;
 }
 
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-title {
+  border: none;
+  opacity: 0.4;
+  border-radius: 40px;
+  height: 20px;
+}
+
+.sort-title:hover,
+.sort-title:focus {
+  background-color: rgb(212, 211, 211);
+  cursor: pointer;
+}
+
+#filterTitle {
+  max-width: 30%;
+}
+
 .logged-out {
   /* display: none; */
 }
-
-/* .icon {
-  pointer-events: none;
-  opacity: 0.4;
-} */
 
 .sidenav-trigger {
   cursor: pointer;
@@ -79,7 +97,7 @@
 }
 
 .projects {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .projects h4 {
@@ -93,7 +111,18 @@
   padding: 10px;
   box-shadow: 0px 1px 3px rgba(90, 90, 90, 0.5);
   position: relative;
-  /* border-right: 3px solid orange; */
+}
+
+.ongoing {
+  border-right: 5px solid orange;
+}
+
+.overdue {
+  border-right: 5px solid red;
+}
+
+.complete {
+  border-right: 5px solid green;
 }
 
 .project-title img {

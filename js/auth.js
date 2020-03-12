@@ -20,14 +20,14 @@ auth.onAuthStateChanged(user => {
       // Add a property to the user that is logged in which will be 'true 'or 'null'
 
       user.admin = idTokenResult.claims.admin;
-      setupUI(user);
+
       removeLoginMessage();
       db.collection('projects').onSnapshot(
         snapshot => {
           snapshot.docChanges().forEach(change => {
             if (change.type === 'added') {
               // Add the document to the web page
-              renderProject(change.doc.data(), change.doc.id);
+              renderProject(change.doc.data(), change.doc.id, user);
             }
 
             if (change.type === 'removed') {
