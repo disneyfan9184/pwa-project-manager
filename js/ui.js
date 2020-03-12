@@ -94,12 +94,11 @@ const setupUI = user => {
   }
 
   const projectItems = Array.from(document.querySelectorAll('.project-item'));
-  // console.log(projectItems);
 
   projectItems.forEach(project => {
     let status = project.querySelector('.status');
     // console.log(status.innerText);
-    if (status.innerText === 'overdue') {      
+    if (status.innerText === 'overdue') {
       project.classList.add('overdue');
     } else if (status.innerText === 'ongoing') {
       project.classList.add('ongoing');
