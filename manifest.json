@@ -1,6 +1,6 @@
 {
   "name": "Project Manager",
-  "short_name": "ProjectManager",
+  "short_name": "ProManager",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#6e6e6e",
