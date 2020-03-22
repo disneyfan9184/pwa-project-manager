@@ -1,14 +1,14 @@
 // Shell resource
-const staticCacheName = 'site-static-v4';
-const dynamicCacheName = 'site-dynamic-v4';
+const staticCacheName = 'site-static-v5';
+const dynamicCacheName = 'site-dynamic-v5';
 const assets = [
   '/',
   '/index.html',
-  '/js/app.js',
-  '/js/ui.js',
-  '/css/styles.css',
-  '/img/project.png',
-  '/pages/fallback.html',
+  'js/app.js',
+  'js/ui.js',
+  'css/styles.css',
+  'img/project.png',
+  'pages/fallback.html',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
   'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js',
