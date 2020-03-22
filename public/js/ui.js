@@ -29,7 +29,7 @@ const renderProject = (data, id, user) => {
     const html = `
     <li class="project-item" data-id="${id}">
       <div class="project-title collapsible-header">
-        <img src="img/project.png" alt="project thumbnail" />${data.title}
+        ${data.title}
       </div>
       <div class="collapsible-body white">
         <div class="project-person"> ${data.name}</div>
