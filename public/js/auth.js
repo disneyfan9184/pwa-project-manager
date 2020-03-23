@@ -89,12 +89,11 @@ logout.addEventListener('click', e => {
   auth.signOut();
 });
 
-// const sideLogout = document.querySelector('#side-logout');
-// sideLogout.addEventListener('click', e => {
-//   console.log('side logout clicked');
-//   // e.preventDefault();
-//   auth.signOut();
-// });
+const sideLogout = document.getElementById('sideLogout');
+sideLogout.addEventListener('click', e => {
+  e.preventDefault();
+  auth.signOut();
+});
 
 // Login user
 const loginForm = document.getElementById('login-form');
